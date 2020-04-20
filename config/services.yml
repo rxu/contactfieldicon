@@ -1,0 +1,9 @@
+services:
+    rxu.contactfieldicon.listener:
+        class: rxu\contactfieldicon\event\main_listener
+        arguments:
+            - '@request'
+            - '@profilefields.manager'
+            - '@template'
+        tags:
+            - { name: event.listener }
