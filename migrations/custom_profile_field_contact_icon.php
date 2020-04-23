@@ -27,7 +27,7 @@ class custom_profile_field_contact_icon extends \phpbb\db\migration\migration
 		return array(
 			'add_columns'	=> [
 				$this->table_prefix . 'profile_fields'	=> [
-					'contact_field_icon'	=> array('VCHAR:255', ''),
+					'contact_field_icon'	=> array('VCHAR:255', json_encode(['name' => '', 'color' => ''])),
 				],
 			],
 		);

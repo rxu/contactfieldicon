@@ -71,11 +71,16 @@ class main_listener implements EventSubscriberInterface
 
 				if ($action == 'create')
 				{
-					$field_row['contact_field_icon'] = '';
+					$field_row['contact_field_icon'] = json_encode(['name' => '', 'color' => '']);
 				}
 
 				$exclude[1][] = 'contact_field_icon';
-				$this->cp->vars['contact_field_icon'] = $this->request->variable('contact_field_icon', $field_row['contact_field_icon']);
+				$icon = json_decode($field_row['contact_field_icon'], true);
+				$icon_data = [
+					'name' => $this->request->variable('contact_field_icon', $icon['name'] ?: ''),
+					'color' => $this->request->variable('contact_field_icon_bgcolor', $icon['color'] ?: ''),
+				];
+				$this->cp->vars['contact_field_icon'] = json_encode($icon_data);
 				$event['field_row'] = $field_row;
 				$event['exclude'] = $exclude;
 			break;
@@ -83,7 +88,12 @@ class main_listener implements EventSubscriberInterface
 			case 'core.acp_profile_create_edit_after':
 				if ($event['step'] == 1)
 				{
-					$this->template->assign_vars(['CONTACT_FIELD_ICON' => $this->cp->vars['contact_field_icon']]);
+					$icon_data = json_decode($this->cp->vars['contact_field_icon'], true);
+					$this->template->assign_vars([
+						'CONTACT_FIELD_ICON' 		=> $icon_data['name'],
+						'CONTACT_FIELD_ICON_BGCOLOR'=> $icon_data['color'],
+						'S_IN_ACP_CONTACTFIELDICON' => true,
+					]);
 				}
 			break;
 
@@ -147,10 +157,14 @@ class main_listener implements EventSubscriberInterface
 			{
 				if ($field_data['S_PROFILE_CONTACT'])
 				{
+					$icon_data = json_decode($field_data['PROFILE_CONTACT_FIELD_ICON'], true);
 					$this->template->alter_block_array(
 						'postrow.contact',
-						['ICON'		=> $field_data['PROFILE_CONTACT_FIELD_ICON']],
-						['ID'		=> $field_data['PROFILE_FIELD_IDENT']],
+						[
+							'ICON'			=> $icon_data['name'],
+							'ICON_COLOR'	=> $icon_data['color'],
+						],
+						['ID'			=> $field_data['PROFILE_FIELD_IDENT']],
 						'change'
 					);
 				}

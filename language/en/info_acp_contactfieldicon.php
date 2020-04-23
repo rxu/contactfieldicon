@@ -36,7 +36,9 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 
-	'CONTACT_FIELD_ICON'				=> 'Contact field icon',
-	'CONTACT_FIELD_ICON_EXPLAIN'		=> 'Enter the name of a Font Awesome icon to use with the contact field while displaying in the mini-profile on the topic screen. Leave this field blank to use phpBB default contact image icon.',
+	'CONTACT_FIELD_ICON'			=> 'Contact field icon',
+	'CONTACT_FIELD_ICON_EXPLAIN'	=> 'Enter the name of a Font Awesome icon to use with the contact field while displaying in the mini-profile on the topic screen. Leave this field blank to use phpBB default contact image icon.<br>You can also set the icon color using a hex code (e.g: FFFF80). Leave this field blank to use the default color.',
 
+	'CONTACT_FIELD_ICON_COLOR'		=> 'Icon color',
+	'CONTACT_FIELD_ICON_NAME'		=> 'Icon name',
 ));

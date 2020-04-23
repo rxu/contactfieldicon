@@ -1,6 +1,5 @@
 			{% INCLUDEJS '@rxu_contactfieldicon/scripts.js' %}
 			<dt><label for="contact_field_icon">{{ lang('CONTACT_FIELD_ICON') ~ lang('COLON') }}</label><br /><span>{{ lang('CONTACT_FIELD_ICON_EXPLAIN') }}</span></dt>
-			<dd><input name="contact_field_icon" id="contact_field_icon" type="text" size="15" maxlength="255" value="{{ CONTACT_FIELD_ICON }}" placeholder="files-o" />
-				<i style="font-size: 16px; margin:0 6px; vertical-align: middle;" class="icon fa-{{ CONTACT_FIELD_ICON }} fa-fw"></i>
-			</dd>
-			
+			<dd><input name="contact_field_icon" id="contact_field_icon" type="text" size="15" maxlength="255" value="{{ CONTACT_FIELD_ICON }}" placeholder="{L_CONTACT_FIELD_ICON_NAME}" />
+				<i name="contact_field_icon_demo" id="contact_field_icon_demo" style="font-size: 16px; margin:0 6px; vertical-align: middle; {% if CONTACT_FIELD_ICON_BGCOLOR %}color: #{{ CONTACT_FIELD_ICON_BGCOLOR }}{% endif %}" class="icon fa-fw fa-{{ CONTACT_FIELD_ICON }}"></i></dd>
+			<dd><input name="contact_field_icon_bgcolor" type="text" id="contact_field_icon_bgcolor" value="{{ CONTACT_FIELD_ICON_BGCOLOR }}" size="6" maxlength="6" placeholder="{L_CONTACT_FIELD_ICON_COLOR}" /></dd>
