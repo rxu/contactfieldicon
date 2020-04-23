@@ -31,8 +31,11 @@ class ext extends \phpbb\extension\base
 	*/
 	public function is_enableable()
 	{
+		return true;
+		/* Temporary disable version requiremenrs check
 		return phpbb_version_compare(PHPBB_VERSION, '3.2.10-RC1', '>=') &&
 			phpbb_version_compare(PHPBB_VERSION, '3.3.1-RC1', '>=') &&
 			phpbb_version_compare(PHPBB_VERSION, '4.0.0-dev', '<');
+		*/
 	}
 }
