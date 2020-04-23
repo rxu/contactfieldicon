@@ -100,7 +100,7 @@ class main_listener implements EventSubscriberInterface
 			case 'core.acp_profile_create_edit_save_before':
 				$profile_fields = $event['profile_fields'];
 				$profile_fields['contact_field_icon'] = $this->cp->vars['contact_field_icon'];
-				$event['profile_fields'] = $profile_fields;			
+				$event['profile_fields'] = $profile_fields;
 			break;
 		}
 	}
