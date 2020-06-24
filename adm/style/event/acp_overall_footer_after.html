@@ -1,35 +1,8 @@
 {% if S_IN_ACP_CONTACTFIELDICON %}
-
 	{% if not definition.INCLUDED_COLPICKJS %}
-		{% INCLUDEJS '@rxu_contactfieldicon/colpick.js' %}
-		{% INCLUDECSS '@rxu_contactfieldicon/colpick.css' %}
+		{% INCLUDEJS '@rxu_contactfieldicon/scripts.js' %}
+		{% INCLUDEJS '@rxu_contactfieldicon/wcolpick.js' %}
+		{% INCLUDECSS '@rxu_contactfieldicon/wcolpick.css' %}
 		{% DEFINE INCLUDED_COLPICKJS = true %}
 	{% endif %}
-
-	<script>
-	jQuery(function($) {
-		var bgcolor = '{{ CONTACT_FIELD_ICON_BGCOLOR|e('js') }}';
-		$('#contact_field_icon_bgcolor').colpick({
-			layout: 'hex',
-			submit: 0,
-			onBeforeShow: function() {
-				if (bgcolor !== '') {
-					$(this).colpickSetColor(bgcolor);
-					bgcolor = '';
-				}
-			},
-			onChange: function(hsb, hex, rgb, el, bySetColor) {
-				$('#contact_field_icon_demo').css({
-					'color': '#' + hex,
-				});
-				if (!bySetColor) {
-					$(el).val(hex);
-				}
-			}
-		}).keyup(function() {
-			$(this).colpickSetColor(this.value || '');
-		});
-	});
-	</script>
-
 {% endif %}

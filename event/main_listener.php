@@ -1,9 +1,10 @@
 <?php
 /**
  *
- * Adds an option of assigning FontAwesome icon to contact profile fields. An extension for the phpBB Forum Software package.
+ * Adds an option of assigning FontAwesome icon to contact profile fields.
+ * An extension for the phpBB Forum Software package.
  *
- * @copyright (c) 2020, rxu, https://ww.phpbbguru.net
+ * @copyright (c) 2020, rxu, https://www.phpbbguru.net
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
  */
@@ -22,14 +23,14 @@ class main_listener implements EventSubscriberInterface
 {
 	public static function getSubscribedEvents()
 	{
-		return array(
+		return [
 			'core.acp_profile_create_edit_init'					=> 'add_icon_data_to_acp',
 			'core.acp_profile_create_edit_after'				=> 'add_icon_data_to_acp',
 			'core.acp_profile_create_edit_save_before'			=> 'add_icon_data_to_acp',
 			'core.generate_profile_fields_template_headlines'	=> 'add_icon_data_to_profilefields_manager',
 			'core.generate_profile_fields_template_data'		=> 'add_icon_data_to_profilefields_manager',
 			'core.viewtopic_post_row_after'						=> 'add_icon_data_to_viewtopic_profilefields',
-		);
+		];
 	}
 
 	/** @var \phpbb\request\request_interface */
@@ -44,8 +45,9 @@ class main_listener implements EventSubscriberInterface
 	/**
 	 * Constructor
 	 *
-	 * @param \phpbb\profilefields\manager	$cp			Profilefields manager object
-	 * @param \phpbb\template\template		$template	Template object
+	 * @param \phpbb\request\request_interface	$request	Request object
+	 * @param \phpbb\profilefields\manager		$cp			Profilefields manager object
+	 * @param \phpbb\template\template			$template	Template object
 	 */
 	public function __construct(\phpbb\request\request_interface $request, \phpbb\profilefields\manager $cp, \phpbb\template\template $template)
 	{
@@ -158,15 +160,18 @@ class main_listener implements EventSubscriberInterface
 				if ($field_data['S_PROFILE_CONTACT'])
 				{
 					$icon_data = json_decode($field_data['PROFILE_CONTACT_FIELD_ICON'], true);
-					$this->template->alter_block_array(
-						'postrow.contact',
-						[
-							'ICON'			=> $icon_data['name'],
-							'ICON_COLOR'	=> $icon_data['color'],
-						],
-						['ID'			=> $field_data['PROFILE_FIELD_IDENT']],
-						'change'
-					);
+					if (!empty($icon_data['name']))
+					{
+						$this->template->alter_block_array(
+							'postrow.contact',
+							[
+								'ICON'			=> $icon_data['name'],
+								'ICON_COLOR'	=> $icon_data['color'],
+							],
+							['ID'			=> $field_data['PROFILE_FIELD_IDENT']],
+							'change'
+						);
+					}
 				}
 			}
 		}

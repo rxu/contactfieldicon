@@ -37,9 +37,9 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 
-	'CONTACT_FIELD_ICON'			=> 'Contact field icon',
-	'CONTACT_FIELD_ICON_EXPLAIN'	=> 'Enter the name of a FontAwesome (versions 4 or 5) icon to use with the contact field while displaying in the mini-profile on the topic screen. Leave this field blank to use phpBB default contact image icon.<br>You can also choose the icon color from color picker or set it directly using a hex code (e.g: ffff80). Leave this field blank to use the default color.',
+	'CONTACT_FIELD_ICON'			=> 'Значок поля контакта',
+	'CONTACT_FIELD_ICON_EXPLAIN'	=> 'Введите название символа FontAwesome (версии 4 или 5) для использования в качестве значка контакта при отображении в минипрофилях сообщений. Оставьте пустым для использования значка phpBB по умолчанию.<br>Также можно выбрать цвет значка с помощью палитры или напрямую с использованием шестнадцатиричного представления (например: ffff80). Оставьте пустым для использования цвета по умолчанию.',
 
-	'CONTACT_FIELD_ICON_COLOR'		=> 'Icon color',
-	'CONTACT_FIELD_ICON_NAME'		=> 'Icon name',
+	'CONTACT_FIELD_ICON_COLOR'		=> 'Цвет',
+	'CONTACT_FIELD_ICON_NAME'		=> 'Значок',
 ]);

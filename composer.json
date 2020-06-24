@@ -2,7 +2,7 @@
     "name": "rxu/contactfieldicon",
     "type": "phpbb-extension",
     "description": "Adds an option of assigning FontAwesome icon to contact profile fields",
-    "homepage": "https://ww.phpbbguru.net",
+    "homepage": "https://www.phpbbguru.net",
     "version": "1.0.0-dev",
     "time": "2020-04-02",
     "license": "GPL-2.0-only",
@@ -10,7 +10,7 @@
         {
             "name": "rxu",
             "email": "rxu@mail.ru",
-            "homepage": "https://ww.phpbbguru.net",
+            "homepage": "https://www.phpbbguru.net",
             "role": "Developer"
         }
     ],
@@ -21,7 +21,7 @@
     "extra": {
         "display-name": "Contact profile field icon",
         "soft-require": {
-            "phpbb/phpbb": ">=3.2.10,<3.4.0@dev"
+            "phpbb/phpbb": ">=3.2.10,<4.0.0@dev"
         }
     }
 }

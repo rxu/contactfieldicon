@@ -1,7 +1,8 @@
 <?php
 /**
  *
- * Adds an option of assigning FontAwesome icon to contact profile fields. An extension for the phpBB Forum Software package.
+ * Adds an option of assigning FontAwesome icon to contact profile fields.
+ * An extension for the phpBB Forum Software package.
  *
  * @copyright (c) 2020, rxu, https://ww.phpbbguru.net
  * @license GNU General Public License, version 2 (GPL-2.0)
@@ -51,5 +52,29 @@ class controller_test extends \phpbb_functional_test_case
 		$this->assertContains('icon fa-fw fa-youtube', $crawler->filter('i[name="contact_field_icon_demo"]')->attr('class'));
 		$this->assertContains('color: #f10313', $crawler->filter('i[name="contact_field_icon_demo"]')->attr('style'));
 		$this->assertContains('f10313', $crawler->filter('input[name="contact_field_icon_bgcolor"]')->attr('value'));
+	}
+
+	public function test_viewtopic()
+	{
+		$this->add_lang('ucp');
+		$this->login();
+
+		$crawler = self::request('GET', 'ucp.php?i=ucp_profile&mode=profile_info');
+		$this->assertContainsLang('UCP_PROFILE_PROFILE_INFO', $crawler->filter('#cp-main h2')->text());
+
+		$form = $crawler->selectButton('Submit')->form([
+			'pf_phpbb_youtube'	=> 'some_account', // Set random YouTube account
+		]);
+		$crawler = self::submit($form);
+		$this->assertContainsLang('PROFILE_UPDATED', $crawler->filter('#message')->text());
+
+		$crawler = self::request('GET', 'ucp.php?i=ucp_profile&mode=profile_info');
+		$form = $crawler->selectButton('Submit')->form();
+		$this->assertEquals('some_account', $form->get('pf_phpbb_youtube')->getValue());
+
+		$crawler = self::request('GET', 'viewtopic.php?p=1#p1');
+		$this->assertContains('icon fa-fw fa-youtube', $crawler->filter('a[title="YouTube"] > i')->attr('class'));
+		$this->assertContains('color: #f10313', $crawler->filter('a[title="YouTube"] > i')->attr('style'));
+		$this->assertNotContains('<span class="contact-icon phpbb_youtube-icon">YouTube</span>', $crawler->filter('a[title="YouTube"]')->text());
 	}
 }

@@ -1,9 +1,10 @@
 <?php
 /**
  *
- * Adds an option of assigning FontAwesome icon to contact profile fields. An extension for the phpBB Forum Software package.
+ * Adds an option of assigning FontAwesome icon to contact profile fields.
+ * An extension for the phpBB Forum Software package.
  *
- * @copyright (c) 2020, rxu, https://ww.phpbbguru.net
+ * @copyright (c) 2020, rxu, https://www.phpbbguru.net
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
  */
@@ -23,19 +24,15 @@ class ext extends \phpbb\extension\base
 	* The current phpBB version should meet or exceed
 	* the minimum version required by this extension:
 	*
-	* Requires phpBB 3.2.10 or 3.3.1 due to new template event
-	* required in the acp_profile.html.
+	* Requires phpBB 3.2.10 or 3.3.1 due to new template events
+	* required in the acp_profile.html and viewtopic_body.html.
 	*
 	* @return bool
 	* @access public
 	*/
 	public function is_enableable()
 	{
-		return true;
-		/* Temporary disable version requiremenrs check
 		return phpbb_version_compare(PHPBB_VERSION, '3.2.10-RC1', '>=') &&
-			phpbb_version_compare(PHPBB_VERSION, '3.3.1-RC1', '>=') &&
 			phpbb_version_compare(PHPBB_VERSION, '4.0.0-dev', '<');
-		*/
 	}
 }
